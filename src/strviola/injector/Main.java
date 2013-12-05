@@ -1,7 +1,9 @@
 package strviola.injector;
 
+import strviola.injector.ui.MainFrame;
+
 public class Main {
 	public static void main(String[] args) {
-		// TODO できればSwingを使ってGUIを実装
+		new MainFrame().setVisible(true);
 	}
 }

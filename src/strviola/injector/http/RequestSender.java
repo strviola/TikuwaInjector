@@ -1,4 +1,4 @@
-package strviola.injector;
+package strviola.injector.http;
 
 public class RequestSender {
 	

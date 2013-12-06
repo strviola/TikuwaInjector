@@ -7,15 +7,12 @@ import java.net.URL;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.client.protocol.ClientContext;
-import org.apache.http.impl.client.AbstractHttpClient;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.util.EntityUtils;
 
 public abstract class HTTPBaseClient {
@@ -34,7 +31,7 @@ public abstract class HTTPBaseClient {
 
 	// cookie and context
 	private static BasicCookieStore cookieStore = new BasicCookieStore();
-	private static BasicHttpContext localContext = new BasicHttpContext();
+	private static HttpClientContext localContext = HttpClientContext.create();
 
 	protected HTTPBaseClient(String scheme, String domain, String path) {
 		try {
@@ -86,14 +83,15 @@ public abstract class HTTPBaseClient {
 	 * @throws ConnectionException
 	 * @throws ClientProtocolException
 	 */
-	protected String httpConnect(HttpRequestBase method)
-		throws IOException {
+	protected String httpConnect(HttpRequestBase method) throws IOException {
 
 		// set user-agent for security
-		
-		HttpClient client = HttpClients.createDefault();
 		method.setHeader("user_agent", TIKUWA_USER_AGENT);
-		localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+
+		// make client with cookie
+		CloseableHttpClient client = HttpClients.custom()
+				.setDefaultCookieStore(cookieStore).build();
+		localContext.setCookieStore(cookieStore);
 
 		final String res;
 		System.out.println("Start connecting " + method.getURI());
@@ -111,17 +109,15 @@ public abstract class HTTPBaseClient {
 
 				} else {
 					// connection failed - print logs
-					System.out.println(response.getStatusLine().toString());
-					System.out.println(result);
-
+					System.err.println(response.getStatusLine().toString());
+					System.err.println(result);
 				}
 				return result;
-
 			}
 
 		}, localContext);
 
-		((AbstractHttpClient) client).close();
+		client.close();
 		System.out.println(res.toString());
 		return res;
 	}

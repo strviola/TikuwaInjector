@@ -1,8 +1,74 @@
 package strviola.injector.http;
 
 public class RequestSender {
-	
-	public void send() {
-		// TODO 「ちくわ」から持ってきちゃえ
+
+	private static enum Method {
+		get, post,
+	}
+
+	private static String senderBase(Method type, String path, String[]... args) {
+
+		HTTPBaseClient client;
+		switch (type) {
+		case get:
+			client = new HTTPGetClient(path);
+			break;
+		case post:
+			client = new HTTPPostClient(path);
+			break;
+		default:
+			client = null;
+			break;
+		}
+
+		for (String[] pair : args) {
+			client.addParameter(pair[0], pair[1]);
+		}
+
+		if (client != null) {
+			try {
+				return client.execute();
+			} catch (ConnectionException e) {
+				e.printStackTrace();
+				return e.toString();
+			}
+		} else {
+			return null;
+		}
+	}
+
+	public static String sendLogin(String token) {
+		return senderBase(Method.post, "/auth/login/",
+				new String[]{"token", token});
+	}
+
+	public static String sendLogin(String name, String psw) {
+		return senderBase(Method.post, "/auth/info/", 
+				new String[]{"gmail", name},
+				new String[]{"password", psw});
+	}
+
+	public static String sendTikuwa(String id, String num) {
+		return senderBase(Method.post, "/tikuwa/update/",
+				new String[]{"tid", id},
+				new String[]{"hasnum", num});
+	}
+
+	public static String sendGetMoney() {
+		return senderBase(Method.post, "/tikuwa/money/");
+	}
+
+	public static String sendMoney(String userID, String money) {
+		return senderBase(Method.post, "/user/friend/",
+				new String[]{"uid", userID},
+				new String[]{"money", money});
+	}
+
+	public static final String gmail = "django.contrib.auth.models@gmail.com";
+	public static final String password = "118224505238236737181";
+
+	public static void main(String[] args) {
+		System.out.println(sendLogin(gmail, password));
+		System.out.println(sendTikuwa("0", "15"));
 	}
 }

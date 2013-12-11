@@ -19,14 +19,14 @@ public abstract class HTTPBaseClient {
 
 	protected URL url;
 	// select localhost or tikuwa site
-	public static boolean LOCAL = false;
+	public static boolean LOCAL = true;
 
 	// tikuwa server status
 	public static final String TIKUWA_USER_AGENT = "TikuwaAppADTE2209";
 	public static final String TIKUWA_SCHEME = "http"; // possible "https"
 	public static final String TIKUWA_DOMAIN = "tikuwa.adte.tv";
 	// test for localhost
-	public static final String LOCAL_HOST = "10.0.2.2";
+	public static final String LOCAL_HOST = "127.0.0.1";
 	public static final int LOCAL_PORT = 8000;
 
 	// cookie and context
@@ -86,7 +86,7 @@ public abstract class HTTPBaseClient {
 	protected String httpConnect(HttpRequestBase method) throws IOException {
 
 		// set user-agent for security
-		method.setHeader("user_agent", TIKUWA_USER_AGENT);
+		method.setHeader("USER_AGENT", TIKUWA_USER_AGENT);
 
 		// make client with cookie
 		CloseableHttpClient client = HttpClients.custom()

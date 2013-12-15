@@ -1,5 +1,6 @@
 package strviola.injector.ui;
 
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.AbstractAction;
@@ -13,13 +14,16 @@ public abstract class AbstractFormCard extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	protected JTextField[] inputs;
+	protected static JTextField[] inputs;
+	protected static Component parentComponent;
 
-	public AbstractFormCard(AbstractAction onButtonClick, String... labels) {
+	public AbstractFormCard(Component parent, AbstractAction onButtonClick,
+			String... labels) {
 		super();
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		inputs = new JTextField[labels.length];
+		AbstractFormCard.parentComponent = parent;
 
 		// panel for labels and forms
 		for (int i = 0; i < labels.length; i++) {

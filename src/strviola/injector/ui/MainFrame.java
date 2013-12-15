@@ -37,7 +37,7 @@ public class MainFrame extends JFrame {
 		this.contentCards = new JPanel();
 		this.cardManager = new CardLayout();
 		contentCards.setLayout(cardManager);
-		contentCards.add("0", new LoginCard());
+		contentCards.add("0", new LoginCard(this));
 		// TODO: contentCards.add("1", new TikuwaUploadCard());
 		// TODO: contentCards.add("2", new ReceivePointCard());
 		// TODO: contentCards.add("3", new GivePointCard());

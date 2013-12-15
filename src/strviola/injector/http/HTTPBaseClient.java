@@ -1,6 +1,8 @@
 package strviola.injector.http;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -38,8 +40,8 @@ public abstract class HTTPBaseClient {
 			this.url = new URL(scheme, domain, path);
 
 		} catch (MalformedURLException e) {
-			System.err.println(String.format("Given URL %s://%s/%s is invalid!",
-				scheme, domain, path));
+			System.err.println(String.format(
+					"Given URL %s://%s/%s is invalid!", scheme, domain, path));
 		}
 	}
 
@@ -53,7 +55,7 @@ public abstract class HTTPBaseClient {
 
 		} catch (MalformedURLException e) {
 			System.err.println(String.format(
-				"Given URL http://tikuwa.adte.tv/%s is invalid!", path));
+					"Given URL http://tikuwa.adte.tv/%s is invalid!", path));
 		}
 	}
 
@@ -99,7 +101,7 @@ public abstract class HTTPBaseClient {
 
 			@Override
 			public String handleResponse(HttpResponse response)
-				throws ClientProtocolException, IOException {
+					throws ClientProtocolException, IOException {
 				System.out.println("execute request");
 				String result = EntityUtils.toString(response.getEntity());
 
@@ -108,9 +110,12 @@ public abstract class HTTPBaseClient {
 					System.out.println("Connection success!");
 
 				} else {
-					// connection failed - print logs
+					// connection failed - output logs
 					System.err.println(response.getStatusLine().toString());
-					System.err.println(result);
+					OutputStreamWriter errorWriter = new OutputStreamWriter(
+							new FileOutputStream("error.html"), "utf-8");
+					errorWriter.write(result);
+					errorWriter.close();
 				}
 				return result;
 			}

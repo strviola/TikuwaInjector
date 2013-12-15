@@ -14,7 +14,7 @@ public class MainFrame extends JFrame {
 	private HeaderPanel header;
 	private JPanel contentCards;
 	private CardLayout cardManager;
-	
+
 	public MainFrame() {
 		setTitle("Tikuwa Injector");
 		setSize(600, 200);
@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		
+
 		this.header = new HeaderPanel() {
 			private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
 				cardManager.show(contentCards, String.valueOf(index));
 			}
 		};
-		
+
 		this.contentCards = new JPanel();
 		this.cardManager = new CardLayout();
 		contentCards.setLayout(cardManager);
@@ -42,7 +42,7 @@ public class MainFrame extends JFrame {
 		// TODO: contentCards.add("2", new ReceivePointCard());
 		// TODO: contentCards.add("3", new GivePointCard());
 		cardManager.show(contentCards, "0");
-		
+
 		add(header);
 		add(contentCards);
 	}

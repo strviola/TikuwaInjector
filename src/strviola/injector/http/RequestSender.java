@@ -64,11 +64,9 @@ public class RequestSender {
 				new String[]{"money", money});
 	}
 
-	public static final String gmail = "django.contrib.auth.models@gmail.com";
-	public static final String password = "118224505238236737181";
-
 	public static void main(String[] args) {
-		System.out.println(sendLogin(gmail, password));
-		System.out.println(sendTikuwa("0", "15"));
+		// Secret.java is ignored! :-P
+		sendLogin(Secret.gmail2, Secret.password2);
+		sendTikuwa("0", "15");
 	}
 }

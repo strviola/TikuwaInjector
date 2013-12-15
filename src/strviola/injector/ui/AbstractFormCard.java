@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -46,5 +47,9 @@ public abstract class AbstractFormCard extends JPanel {
 		JButton sendButton = new JButton("Submit");
 		sendButton.setAction(onButtonClick);
 		add(sendButton);
+	}
+
+	protected static void showMessage(String message) {
+		JOptionPane.showMessageDialog(parentComponent, message);
 	}
 }

@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO ComboBox 変更時の処理
+				// ComboBox 変更時の処理
 				int index = selectMethod.getSelectedIndex();
 				cardManager.show(contentCards, String.valueOf(index));
 			}
@@ -38,9 +38,9 @@ public class MainFrame extends JFrame {
 		this.cardManager = new CardLayout();
 		contentCards.setLayout(cardManager);
 		contentCards.add("0", new LoginCard(this));
-		// TODO: contentCards.add("1", new TikuwaUploadCard());
-		// TODO: contentCards.add("2", new ReceivePointCard());
-		// TODO: contentCards.add("3", new GivePointCard());
+		contentCards.add("1", new SendTikuwaCard(this));
+		contentCards.add("2", new ReceivePointCard(this));
+		contentCards.add("3", new GivePointCard(this));
 		cardManager.show(contentCards, "0");
 
 		add(header);

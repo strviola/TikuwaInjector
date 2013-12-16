@@ -12,7 +12,8 @@ public class LoginCard extends AbstractFormCard {
 	private static final long serialVersionUID = 8954038241662950530L;
 
 	public LoginCard(Component parent) {
-		super(parent, new AbstractAction() {
+		super(parent, "gmail", "password");
+		setAction(new AbstractAction() {
 
 			private static final long serialVersionUID = -6241995510617637291L;
 
@@ -24,7 +25,6 @@ public class LoginCard extends AbstractFormCard {
 				String loginResult = RequestSender.sendLogin(gmail, password);
 				showMessage(loginResult);
 			}
-
-		}, "gmail", "password");
+		});
 	}
 }

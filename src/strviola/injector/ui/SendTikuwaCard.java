@@ -12,7 +12,8 @@ public class SendTikuwaCard extends AbstractFormCard {
 	private static final long serialVersionUID = -1394480198345289726L;
 
 	public SendTikuwaCard(final Component parent) {
-		super(parent, new AbstractAction() {
+		super(parent, "Tikuwa ID", "Number");
+		setAction(new AbstractAction() {
 
 			private static final long serialVersionUID = -3232219846574293899L;
 
@@ -24,7 +25,6 @@ public class SendTikuwaCard extends AbstractFormCard {
 				String result = RequestSender.sendTikuwa(tikuwaID, number);
 				showMessage(result);
 			}
-
-		}, "Tikuwa ID", "Number");
+		});
 	}
 }

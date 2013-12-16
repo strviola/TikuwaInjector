@@ -12,7 +12,8 @@ public class GivePointCard extends AbstractFormCard {
 	private static final long serialVersionUID = -7986822265425089877L;
 
 	public GivePointCard(Component parent) {
-		super(parent, new AbstractAction() {
+		super(parent, "User ID", "Point");
+		setAction(new AbstractAction() {
 
 			private static final long serialVersionUID = -4285097400928371703L;
 
@@ -22,9 +23,7 @@ public class GivePointCard extends AbstractFormCard {
 				String points = inputs[1].getText();
 				String result = RequestSender.sendMoney(uid, points);
 				showMessage(result);
-
 			}
-		}, "User ID", "Point");
+		});
 	}
-
 }

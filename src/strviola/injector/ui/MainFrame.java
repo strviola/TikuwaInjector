@@ -11,9 +11,9 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private HeaderPanel header;
-	private JPanel contentCards;
-	private CardLayout cardManager;
+	private final HeaderPanel header;
+	private final JPanel contentCards;
+	private final CardLayout cardManager;
 
 	public MainFrame() {
 		setTitle("Tikuwa Injector");

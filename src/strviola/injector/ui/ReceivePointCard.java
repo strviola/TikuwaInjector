@@ -12,7 +12,8 @@ public class ReceivePointCard extends AbstractFormCard {
 	private static final long serialVersionUID = -7383727444819028335L;
 
 	public ReceivePointCard(Component parent) {
-		super(parent, new AbstractAction() {
+		super(parent);
+		setAction(new AbstractAction() {
 
 			private static final long serialVersionUID = 9167211141263789196L;
 
@@ -23,5 +24,4 @@ public class ReceivePointCard extends AbstractFormCard {
 			}
 		});
 	}
-
 }

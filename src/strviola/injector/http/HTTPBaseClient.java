@@ -95,9 +95,8 @@ public abstract class HTTPBaseClient {
 				.setDefaultCookieStore(cookieStore).build();
 		localContext.setCookieStore(cookieStore);
 
-		final String res;
 		System.out.println("Start connecting " + method.getURI());
-		res = client.execute(method, new ResponseHandler<String>() {
+		String res = client.execute(method, new ResponseHandler<String>() {
 
 			@Override
 			public String handleResponse(HttpResponse response)
@@ -123,7 +122,6 @@ public abstract class HTTPBaseClient {
 		}, localContext);
 
 		client.close();
-		System.out.println(res.toString());
 		return res;
 	}
 }

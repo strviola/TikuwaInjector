@@ -1,5 +1,6 @@
 package strviola.injector.ui;
 
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
@@ -10,7 +11,7 @@ import javax.swing.JPanel;
 public abstract class HeaderPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	protected JComboBox selectMethod;
 
 	public HeaderPanel() {
@@ -19,7 +20,7 @@ public abstract class HeaderPanel extends JPanel implements ActionListener {
 
 		// label display
 		add(new JLabel("Method: "));
-		
+
 		// combo box display
 		this.selectMethod = new JComboBox();
 		selectMethod.addItem("Login");
@@ -27,6 +28,7 @@ public abstract class HeaderPanel extends JPanel implements ActionListener {
 		selectMethod.addItem("Receive Point");
 		selectMethod.addItem("Give Point");
 		selectMethod.addActionListener(this);
+		selectMethod.setMaximumSize(new Dimension(150, 25));
 		add(selectMethod);
 	}
 }

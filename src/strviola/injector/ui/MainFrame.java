@@ -14,12 +14,13 @@ public class MainFrame extends JFrame {
 	private final HeaderPanel header;
 	private final JPanel contentCards;
 	private final CardLayout cardManager;
+	public static final int width = 500;
+	public static final int height = 200;
 
 	public MainFrame() {
 		setTitle("Tikuwa Injector");
-		setSize(600, 200);
+		setSize(width, height);
 		setLocation(300, 100);
-		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 

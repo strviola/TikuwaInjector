@@ -1,9 +1,6 @@
 package strviola.injector.ui;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 import strviola.injector.http.RequestSender;
 
@@ -13,18 +10,12 @@ public class SendTikuwaCard extends AbstractFormCard {
 
 	public SendTikuwaCard(final Component parent) {
 		super(parent, "Tikuwa ID", "Number");
-		setAction(new AbstractAction() {
+	}
 
-			private static final long serialVersionUID = -3232219846574293899L;
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// send tikuwa-upload request
-				String tikuwaID = inputs[0].getText();
-				String number = inputs[1].getText();
-				String result = RequestSender.sendTikuwa(tikuwaID, number);
-				showMessage(result);
-			}
-		});
+	@Override
+	protected String getMessage() {
+		String tikuwaID = inputs[0].getText();
+		String number = inputs[1].getText();
+		return RequestSender.sendTikuwa(tikuwaID, number);
 	}
 }

@@ -1,9 +1,6 @@
 package strviola.injector.ui;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 import strviola.injector.http.RequestSender;
 
@@ -13,15 +10,10 @@ public class ReceivePointCard extends AbstractFormCard {
 
 	public ReceivePointCard(Component parent) {
 		super(parent);
-		setAction(new AbstractAction() {
+	}
 
-			private static final long serialVersionUID = 9167211141263789196L;
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String result = RequestSender.sendGetMoney();
-				showMessage(result);
-			}
-		});
+	@Override
+	protected String getMessage() {
+		return RequestSender.sendGetMoney();
 	}
 }

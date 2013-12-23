@@ -20,8 +20,6 @@ import org.apache.http.util.EntityUtils;
 public abstract class HTTPBaseClient {
 
 	protected URL url;
-	// select localhost or tikuwa site
-	public static boolean LOCAL = true;
 
 	// tikuwa server status
 	public static final String TIKUWA_USER_AGENT = "TikuwaAppADTE2209";
@@ -31,16 +29,6 @@ public abstract class HTTPBaseClient {
 	// cookie and context
 	private static BasicCookieStore cookieStore = new BasicCookieStore();
 	private static HttpClientContext localContext = HttpClientContext.create();
-
-	protected HTTPBaseClient(String scheme, String domain, String path) {
-		try {
-			this.url = new URL(scheme, domain, path);
-
-		} catch (MalformedURLException e) {
-			System.err.println(String.format(
-					"Given URL %s://%s/%s is invalid!", scheme, domain, path));
-		}
-	}
 
 	protected HTTPBaseClient(String path) {
 		try {

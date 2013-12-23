@@ -13,10 +13,6 @@ public class HTTPPostClient extends HTTPBaseClient {
 	private final ArrayList<BasicNameValuePair> params =
 		new ArrayList<BasicNameValuePair>();
 
-	public HTTPPostClient(String scheme, String domain, String path) {
-		super(scheme, domain, path);
-	}
-
 	public HTTPPostClient(String path) {
 		super(path);
 	}

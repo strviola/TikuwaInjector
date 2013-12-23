@@ -9,11 +9,6 @@ import org.apache.http.client.methods.HttpGet;
 public class HTTPGetClient extends HTTPBaseClient {
 	private final HashMap<String, String> queryParam;
 
-	public HTTPGetClient(String scheme, String domain, String path) {
-		super(scheme, domain, path);
-		this.queryParam = new HashMap<String, String>();
-	}
-
 	public HTTPGetClient(String path) {
 		super(path);
 		this.queryParam = new HashMap<String, String>();

@@ -27,9 +27,6 @@ public abstract class HTTPBaseClient {
 	public static final String TIKUWA_USER_AGENT = "TikuwaAppADTE2209";
 	public static final String TIKUWA_SCHEME = "http"; // possible "https"
 	public static final String TIKUWA_DOMAIN = "tikuwa.adte.tv";
-	// test for localhost
-	public static final String LOCAL_HOST = "127.0.0.1";
-	public static final int LOCAL_PORT = 8000;
 
 	// cookie and context
 	private static BasicCookieStore cookieStore = new BasicCookieStore();
@@ -47,11 +44,7 @@ public abstract class HTTPBaseClient {
 
 	protected HTTPBaseClient(String path) {
 		try {
-			if (LOCAL) {
-				this.url = new URL(TIKUWA_SCHEME, LOCAL_HOST, LOCAL_PORT, path);
-			} else {
-				this.url = new URL(TIKUWA_SCHEME, TIKUWA_DOMAIN, path);
-			}
+			this.url = new URL(TIKUWA_SCHEME, TIKUWA_DOMAIN, path);
 
 		} catch (MalformedURLException e) {
 			System.err.println(String.format(
@@ -61,7 +54,7 @@ public abstract class HTTPBaseClient {
 
 	/**
 	 * HTTPリクエストにパラメータを追加する。GETとPOSTで実装が異なる
-	 * 
+	 *
 	 * @param key
 	 * @param value
 	 * @return
@@ -76,7 +69,7 @@ public abstract class HTTPBaseClient {
 
 	/**
 	 * HTTPリクエストを処理
-	 * 
+	 *
 	 * @param method
 	 *            クライアント (URL, request parameter)
 	 * @return レスポンス

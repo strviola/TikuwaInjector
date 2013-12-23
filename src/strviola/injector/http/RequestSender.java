@@ -60,10 +60,4 @@ public class RequestSender {
 		return senderBase(Method.post, "/user/friend/", new String[] { "uid",
 				userID }, new String[] { "money", money });
 	}
-
-	public static void main(String[] args) {
-		// Secret.java is ignored! :-P
-		sendLogin(Secret.gmail2, Secret.password2);
-		sendTikuwa("0", "15");
-	}
 }
